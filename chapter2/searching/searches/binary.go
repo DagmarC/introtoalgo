@@ -2,7 +2,7 @@ package searches
 
 import "fmt"
 
-func BinarySort(a []int, key int) {
+func BinarySearch(a []int, key int) {
 	if len(a) == 0 {
 		fmt.Println("INFO: key not found, empty array")
 		return
