@@ -2,18 +2,19 @@ package searches
 
 import "fmt"
 
-func BinarySearch(a []int, key int) {
+func BinarySearch(a []int, key int) bool {
 	if len(a) == 0 {
 		fmt.Println("INFO: key not found, empty array")
-		return
+		return false
 	}
-	fmt.Printf("Is key %d present in arr a=%v?\t%v\n", key, a, binaryRec(a, key, 0, len(a)))
+	res := binaryRec(a, key, 0, len(a))
+	return res
 }
 
 // binaryRec will return true if the key is present in the array in O(logn) complexity.
 // Given array a of lenght n, where start and n belongs to [0:n] interval.
 func binaryRec(a []int, key, start, end int) bool {
-	if start > end {
+	if start > end-1 {
 		return false
 	}
 	if start == end-1 {
