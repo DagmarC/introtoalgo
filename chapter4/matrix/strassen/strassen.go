@@ -2,6 +2,7 @@ package strassen
 
 import (
 	"fmt"
+	"log"
 )
 
 const LEAF_SIZE = 1 // IF 1 => pure Strassen algorithm is used.
@@ -95,10 +96,30 @@ func (m Matrix) fillParts(is, ie, js, je int, cp Matrix) {
 
 }
 
-// prereq: matrices A, B are divisible by 2ˆn
+// ======================STRASSEN======================
+// ====================================================
+
+// prereq: matrices A, B are divisible by 2ˆn, if not then fill with 0s (nearest power 2ˆx - n) 
 func StrassenMultip(a, b Matrix) Matrix {
+	// Are matrices divisible by 2ˆn? if not fill it with 0s
+	a = matrix2n(a)
+	b = matrix2n(b)
 	c := strassenRec(a, b)
 	return c
+}
+
+func matrix2n(origin Matrix) Matrix {
+	if IsPower(len(origin)) {
+		return origin
+	}
+	np, err := NearestPower(len(origin))
+	if err != nil {
+		log.Fatal(err)
+	}
+	az := NewMatrix(np)
+	az.fillParts(0, len(origin), 0, len(origin), origin)
+
+	return az
 }
 
 func strassenRec(a, b Matrix) Matrix {
