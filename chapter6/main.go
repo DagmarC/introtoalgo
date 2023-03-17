@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/DagmarC/introtoalgo/chapter6/heapsort"
+	"github.com/DagmarC/introtoalgo/chapter6/heap"
 )
 
 func main() {
 	arr := []int{5, 3, 12, 1, 4, 66}
-	heapsort.Heapsort(arr)
+	heap.Heapsort(arr)
 	fmt.Println("Sorted arr:", arr)
 }

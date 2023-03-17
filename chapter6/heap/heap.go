@@ -1,4 +1,4 @@
-package heapsort
+package heap
 
 // Heap in this case is the Max Heap data structure -> parent > left(i) & right(i), so the root is the greatest of all
 type Heap struct {

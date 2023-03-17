@@ -1,4 +1,4 @@
-package heapsort
+package heap
 
 // Heapsort returns the sorted arr a1 <= a2 <= ... <= an
 // 1. build max heap from the array -> max el at the top
