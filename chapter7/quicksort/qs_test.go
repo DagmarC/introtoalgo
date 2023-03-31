@@ -2,6 +2,8 @@ package quicksort
 
 import (
 	"testing"
+
+	"github.com/DagmarC/introtoalgo/utils"
 )
 
 func TestQuicksort(t *testing.T) {
@@ -20,20 +22,8 @@ func TestQuicksort(t *testing.T) {
 		if err != nil {
 			t.Errorf(err.Error())
 		}
-		if !arrEqual(test.arr, test.expected) {
+		if !utils.EqualIntArr(test.arr, test.expected) {
 			t.Errorf("error, got %v, expected %v", test.arr, test.expected)
 		}
 	}
-}
-
-func arrEqual(a, b []int) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i, elA := range a {
-		if elA != b[i] {
-			return false
-		}
-	}
-	return true
 }
