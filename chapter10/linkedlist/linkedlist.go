@@ -78,7 +78,7 @@ func (ll *Linkedlist[T]) Insert(newVal T, y *Node[T]) {
 	y.next = new
 }
 
-// Insert new Node into the linked list right after y Node
+// InsertLast new Node into the linked list, becomes a new tail
 func (ll *Linkedlist[T]) InsertLast(value T) {
 	new := &Node[T]{key: value}
 
@@ -93,7 +93,8 @@ func (ll *Linkedlist[T]) InsertLast(value T) {
 	ll.tail = new
 }
 
-// @TODO -> not working correctly yet
+// Detele searches and removes the first element with the given value val
+// O(n)
 func (ll *Linkedlist[T]) Delete(val T) {
 	n := ll.Search(val)
 	if n == nil {
@@ -113,6 +114,8 @@ func (ll *Linkedlist[T]) Delete(val T) {
 	}
 }
 
+// Sort - insertion sort being used
+// O(nˆ2)
 func (ll *Linkedlist[T]) Sort() {
 	if ll.head == nil || ll.head.next == nil {
 		return
@@ -136,6 +139,8 @@ func (ll *Linkedlist[T]) Sort() {
 	}
 }
 
+// Equals returns true if all values in both linked lists appear in the same order
+// O(n)
 func (ll *Linkedlist[T]) Equals(ll2 *Linkedlist[T]) bool {
 	if ll.head == nil && ll2.head == nil {
 		return true
@@ -161,19 +166,3 @@ func (ll *Linkedlist[T]) Equals(ll2 *Linkedlist[T]) bool {
 	}
 	return n2 == nil // if yes then both are equal
 }
-
-// func InsertionSort(a []int) error {
-// 	if len(a) == 0 {
-// 		return errors.New("ERROR: empty array")
-// 	}
-// 	for i := 1; i < len(a); i++ {
-// 		card := a[i] // card  to be inserted at the correct place
-// 		j := i - 1
-// 		for j >= 0 && card < a[j] { // while card is less than a[j], shift positions by 1 in arr A
-// 			a[j+1] = a[j]
-// 			j--
-// 		}
-// 		a[j+1] = card // insert card at correct place: j+1, j is where the condition was not fulfilled
-// 	}
-// 	return nil
-// }
