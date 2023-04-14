@@ -134,8 +134,8 @@ func (ll *Linkedlist[T]) Sort() {
 		} else {
 			j.next.key = tmpX
 		}
-		fmt.Println("\nTMP SORT RESULT, sorting node", tmpX)
-		ll.Display()
+		// fmt.Println("\nTMP SORT RESULT, sorting node", tmpX)
+		// ll.Display()
 	}
 }
 
@@ -165,4 +165,30 @@ func (ll *Linkedlist[T]) Equals(ll2 *Linkedlist[T]) bool {
 		n2 = n2.next
 	}
 	return n2 == nil // if yes then both are equal
+}
+
+func ConnectateLls[T constraints.Ordered](lls ...Linkedlist[T]) *Linkedlist[T] {
+	var res Linkedlist[T]
+
+	for _, ll := range lls {
+		if ll.head == nil {
+			continue
+		}
+		fmt.Println("---------LL---------", ll.tail)
+		ll.Display()
+		if res.head == nil {
+			fmt.Println(ll)
+			fmt.Println("Setting the head", ll.head)
+			res.head = ll.head
+		}
+
+		if res.tail == nil {
+			fmt.Println("Setting the tail", ll.tail)
+			res.tail = ll.tail
+		} else {
+			res.tail.next = ll.head
+		}
+	}
+	res.Display()
+	return &res
 }
