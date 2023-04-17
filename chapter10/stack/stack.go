@@ -17,7 +17,7 @@ func (s *Stack) Empty() bool {
 
 func (s *Stack) Push(el int) {
 	if s.top == 0 {
-		s.arr = make([]int, 0) // init arr, size 20 at the beginning
+		s.arr = make([]int, 0) // init arr
 	}
 	s.arr = append(s.arr, el)
 	s.top++
