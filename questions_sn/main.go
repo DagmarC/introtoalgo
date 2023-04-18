@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DagmarC/introtoalgo/questionsSN/page"
+	"github.com/DagmarC/introtoalgo/questions_sn/page"
 )
 
 var o = flag.String("o", "", "file to be created to download data to, if empty os.Stdout will be used")
