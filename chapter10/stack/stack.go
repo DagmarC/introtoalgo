@@ -34,6 +34,13 @@ func (s *Stack[T]) Pull(empty T) (T, error) {
 	return el, nil
 }
 
+func (s *Stack[T]) Top(empty T) (T, error) {
+	if s.top == 0 {
+		return empty, errors.New("stack is empty")
+	}
+	return s.arr[s.top-1], nil
+}
+
 func (s *Stack[T]) String() string {
 	var sb strings.Builder
 	sb.WriteString("Stack from top to bottom: [")
