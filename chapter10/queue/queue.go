@@ -7,6 +7,7 @@ import (
 type Elems interface {
 	~int | ~string | ~float64
 }
+
 type Queue[T Elems] struct {
 	tail int // index of the location of new incoming element
 	head int // index of the first element enqueued, empty queue = -1
