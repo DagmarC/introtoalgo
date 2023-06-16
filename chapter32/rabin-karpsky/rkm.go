@@ -3,13 +3,18 @@ package rabinkarpsky
 import (
 	"fmt"
 	"math"
+	"strings"
 	"unicode/utf8"
 )
 
 // RabinKarpskyMatcher uses modulo q to calculate the substring one by one, t is text, p is pattern, q is a prime and d is usually taken from |Sigma alphabet|
 // modulo/reminder prooblem: Go impl differs to Py impl: https://github.com/golang/go/issues/448
+// match will be all lower case, text and pattern
 func RabinKarpskyMatcher(t string, p string, d int, q int) []int {
 	matches := make([]int, 0) // sapce for at least 4 matches, attaches shifts (indices/ints) in text t where match occurs
+
+	t = strings.ToLower(t)
+	p = strings.ToLower(p)
 
 	n := utf8.RuneCountInString(t)
 	m := utf8.RuneCountInString(p)

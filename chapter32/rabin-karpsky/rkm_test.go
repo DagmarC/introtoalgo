@@ -18,11 +18,11 @@ func TestRKM(t *testing.T) {
 		{text: "leopardleo", pattern: "par", want: []int{3}, q: 7, d: 26},
 		{text: "3141592653589793", pattern: "26", want: []int{6}, q: 11, d: 10},
 		{text: "2359023141526739921", pattern: "31415", want: []int{6}, q: 13, d: 10},
-
+		{text: "Hello my dear, how are you? My wish is to be here. My...", pattern: "My", want: []int{6, 28, 51}, q: 11, d: 10},
 	}
 	for _, tc := range cases {
 		if got := RabinKarpskyMatcher(tc.text, tc.pattern, tc.d, tc.q); !cmp.Equal(got, tc.want) {
-			t.Errorf("want %v, got %v...text %s, pattern %s", got, tc.want, tc.text, tc.pattern)
+			t.Errorf("want %v, got %v...text %s, pattern %s", tc.want, got, tc.text, tc.pattern)
 		}
 	}
 }
