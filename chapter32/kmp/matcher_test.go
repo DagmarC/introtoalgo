@@ -7,7 +7,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func TestSTRM(t *testing.T) {
+func TestKMPMatcher(t *testing.T) {
 	tests := []struct {
 		alphabet []rune
 		pattern  string

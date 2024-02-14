@@ -26,6 +26,8 @@ func KMPMatcher(t, p string) []int {
 	return shifts
 }
 
+// computePrefix will count the number of matches against itself and returns the array of it
+// so when the incorrect match in chars in KMP matcher occurs it can look to this array if there is sub-match p=abab T=aaabaabb
 func computePrefix(p string) []int {
 	m := len(p)
 	pi := make([]int, m)
