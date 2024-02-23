@@ -2,6 +2,7 @@ package indexedtree
 
 import "fmt"
 
+// Fenwick Tree or Binary Indexed Tree: https://www.youtube.com/watch?v=uSFzHCZ4E-8
 type FenwickTree struct {
 	size    int   // n: length of the array
 	arr     []int // array: the input array on which queries are made
@@ -10,10 +11,6 @@ type FenwickTree struct {
 
 // The computation of   $g(i)$  is defined using the following simple operation:
 // we replace all trailing  $1$  bits in the binary representation of  $i$  with  $0$  bits.
-// g(11) = g2(1011) = 1000 = 8
-// g(12) = g2(1100) = 1100 = 12
-// g(13) = g2(1101) = 1100 = 12
-// g(15) = g2(1111) = 0000 = 0
 func NewFenwickTree(arr []int) *FenwickTree {
 	ft := FenwickTree{
 		size:    len(arr) + 1,
@@ -31,7 +28,7 @@ func NewFenwickTree(arr []int) *FenwickTree {
 // Sum of elements from array in range [0, r]
 // indexed from 1, arr [1,2,3,4] i=3 -> elements 1, 2, 3
 // 7 	= 00111
-// -7	= 11001 /2s complement
+// -7	= 11001 /2s complement => switch all bits in 7 and add 1
 // 00111 & 11001 = 00001
 // 00111 - 00001 = 00110 "child"
 func (ft *FenwickTree) Sum(i int) int {
@@ -45,7 +42,7 @@ func (ft *FenwickTree) Sum(i int) int {
 
 // Add the value in the array on index i with increment inc
 // 7 	= 00111
-// -7	= 11001 /2s complement
+// -7	= 11001 /2s complement => switch all bits in 7 and add 1
 // 00111 & 11001 = 00001
 // 00111 + 00001 = 01000 PARENT IDX
 func (ft *FenwickTree) Add(i, inc int) {
