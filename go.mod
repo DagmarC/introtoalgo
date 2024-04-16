@@ -1,6 +1,6 @@
 module github.com/DagmarC/introtoalgo
 
-go 1.20
+go 1.21
 
 require (
 	github.com/DagmarC/introtoalgo/chapter10/stack v0.0.0-20230531134411-a8b1a2f230b7

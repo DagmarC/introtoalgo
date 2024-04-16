@@ -1,8 +1,8 @@
+// Fenwick Tree or Binary Indexed Tree reference: https://www.youtube.com/watch?v=uSFzHCZ4E-8
 package indexedtree
 
 import "fmt"
 
-// Fenwick Tree or Binary Indexed Tree: https://www.youtube.com/watch?v=uSFzHCZ4E-8
 type FenwickTree struct {
 	size    int   // n: length of the array
 	arr     []int // array: the input array on which queries are made

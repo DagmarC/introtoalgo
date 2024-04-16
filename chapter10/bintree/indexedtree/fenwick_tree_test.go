@@ -89,6 +89,12 @@ func TestAdd(t *testing.T) {
 			inc:  3,
 			want: []int{-100, 1, 3, 3, 10, 5, 11, 10, 39},
 		},
+		{
+			ft:   FenwickTree{size: 8, arr: []int{1, 2, 3, 4, 5, 6, 7, 8}, bitTree: []int{-100, 1, 3, 3, 10, 5, 11, 7, 36}},
+			i:    5,
+			inc:  55,
+			want: []int{-100, 1, 3, 3, 10, 60, 66, 7, 91},
+		},
 	}
 	for _, tc := range tests {
 		tc.ft.Add(tc.i, tc.inc)

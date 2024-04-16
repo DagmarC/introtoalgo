@@ -9,91 +9,113 @@ import (
 func TestBuildTree(t *testing.T) {
 	tests := []struct {
 		segmentTree SegmentTree
-		expected    []int
+		want        []int
 	}{
 		{
 			segmentTree: SegmentTree{Array: []int{1, 2, 3, 4}},
-			expected:    []int{10, 3, 7, 1, 2, 3, 4},
+			want:        []int{10, 3, 7, 1, 2, 3, 4},
 		},
 		{
 			segmentTree: SegmentTree{Array: []int{1, 2}},
-			expected:    []int{3, 1, 2},
+			want:        []int{3, 1, 2},
 		},
 	}
 
 	for _, tc := range tests {
 		tc.segmentTree.BuildNew()
-		if !cmp.Equal(tc.segmentTree.Tree, tc.expected) {
-			t.Errorf("got %v, expected %v", tc.segmentTree.Tree, tc.expected)
+		if !cmp.Equal(tc.segmentTree.Tree, tc.want) {
+			t.Errorf("got %v, want %v", tc.segmentTree.Tree, tc.want)
 		}
 	}
 }
 
-func TestSumTree(t *testing.T) {
+func TestSum(t *testing.T) {
 	tests := []struct {
 		segmentTree SegmentTree
 		leftIndex   int
 		rightIndex  int
-		expected    int
+		want        int
 	}{
 		{
 			segmentTree: SegmentTree{Array: []int{1, 2, 3, 4}},
 			leftIndex:   0,
 			rightIndex:  1,
-			expected:    3,
+			want:        3,
 		},
 		{
 			segmentTree: SegmentTree{Array: []int{1, 2}},
 			leftIndex:   1,
 			rightIndex:  1,
-			expected:    2,
+			want:        2,
 		},
 		{
 			segmentTree: SegmentTree{Array: []int{22, 2, -1, 4}},
 			leftIndex:   1,
 			rightIndex:  3,
-			expected:    5,
+			want:        5,
 		},
 		{
 			segmentTree: SegmentTree{Array: []int{1, 2, 3, 4}},
 			leftIndex:   0,
 			rightIndex:  2,
-			expected:    6,
+			want:        6,
 		},
 	}
 
 	for _, tc := range tests {
 		tc.segmentTree.BuildNew()
-		if got := tc.segmentTree.Sum(0, tc.leftIndex, tc.rightIndex); got != tc.expected {
-			t.Errorf("got %v, expected %v", got, tc.expected)
+		if got := tc.segmentTree.Sum(0, tc.leftIndex, tc.rightIndex); got != tc.want {
+			t.Errorf("got %v, want %v", got, tc.want)
 		}
 	}
 }
 
-func TestUpdateTree(t *testing.T) {
+func TestUpdate(t *testing.T) {
 	tests := []struct {
 		segmentTree SegmentTree
 		index       int
 		value       int
-		expected    []int
+		want        []int
 	}{
 		{
 			segmentTree: SegmentTree{Array: []int{1, 2, 3, 4}, Tree: []int{10, 3, 7, 1, 2, 3, 4}},
 			index:       1,
 			value:       10,
-			expected:    []int{18, 11, 7, 1, 10, 3, 4},
+			want:        []int{18, 11, 7, 1, 10, 3, 4},
 		},
 		{
 			segmentTree: SegmentTree{Array: []int{8, 3, 10, 4}, Tree: []int{25, 11, 14, 8, 3, 10, 4}},
 			index:       2,
 			value:       2,
-			expected:    []int{17, 11, 6, 8, 3, 2, 4},
+			want:        []int{17, 11, 6, 8, 3, 2, 4},
 		},
 	}
 	for _, tc := range tests {
 		tc.segmentTree.Update(tc.index, tc.value)
-		if !cmp.Equal(tc.segmentTree.Tree, tc.expected) {
-			t.Errorf("got %v, expected %v", tc.segmentTree.Tree, tc.expected)
+		if !cmp.Equal(tc.segmentTree.Tree, tc.want) {
+			t.Errorf("got %v, want %v", tc.segmentTree.Tree, tc.want)
+		}
+	}
+}
+
+func TestQuery(t *testing.T) {
+	tests := []struct {
+		segmentTree SegmentTree
+		start       int
+		end         int
+		want        int
+	}{
+		{
+			segmentTree: SegmentTree{Array: []int{1, 2, 3, 4}, Tree: []int{10, 3, 7, 1, 2, 3, 4}},
+			start:       0,
+			end:         1,
+			want:        9,
+		},
+	}
+	for _, tc := range tests {
+		tc.segmentTree.Query(tc.start, tc.end)
+		if got := tc.segmentTree.Query(tc.start, tc.end); got != tc.want {
+			t.Errorf("got %v, want %v on tree %v", got, tc.want, tc.segmentTree)
 		}
 	}
 }
