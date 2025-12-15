@@ -38,9 +38,15 @@ func TestKMPMatcher(t *testing.T) {
 			text:     "arisisriskorisgriskoriskisk",
 			matches:  []int{6, 15},
 		},
+				{
+			alphabet: []rune{'a', 'b'},
+			pattern:  "aaa",
+			text:     "abaaaaab",
+			matches:  []int{2, 3, 4},
+		},
 	}
 	for _, tc := range tests {
-		got := KMPMatcher(tc.text, tc.pattern)
+		got := MatchSubstring(tc.text, tc.pattern)
 		if !cmp.Equal(tc.matches, got) {
 			t.Errorf("want %v, got %v\n", tc.matches, got)
 		}
